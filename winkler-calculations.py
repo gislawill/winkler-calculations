@@ -66,12 +66,11 @@ for result in [create_wink_temp(pair) for pair in historical_files]:
 historical_dataset = (historical_dataset.median(dim=['time'])
   .assign(wink_region = assign_wink_region))
 
-plt.show(historical_dataset['wink_region'].plot.hist())
+# plt.show(historical_dataset['wink_region'].plot.hist(bins=[0,1,2,3,4,5,6,7]))
 historical_dataset.to_netcdf(path='./winkler-regions_and_medians_1980-1999.nc')
-print(historical_dataset)
 
 # Run Forecast Analysis
 forecast_2050_dataset = (create_wink_temp(forecast_files)
   .median(dim=['time']).assign(wink_region = assign_wink_region))
-plt.show(forecast_2050_dataset['wink_region'].plot.hist())
+# plt.show(forecast_2050_dataset['wink_region'].plot.hist(bins=[0,1,2,3,4,5,6,7]))
 forecast_2050_dataset.to_netcdf(path='./winkler-regions_and_medians_2040-2060.nc')
